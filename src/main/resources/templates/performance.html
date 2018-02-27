@@ -1,0 +1,97 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Performance Report</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <style type="text/css">
+        .container {
+            border-color: #0a0a0a;
+            border-width: 1px;
+        }
+    </style>
+</head>
+<body>
+<table class="container-fluid">
+    <tr>
+        <td>
+            <table class="container">
+                <tr>
+                    <h4 class="text-center text-danger">Performance Report</h4>
+                </tr>
+                <br />
+            </table>
+            <br/>
+            <table class="container">
+                <tr>
+                    <h4 class="text-center text-primary">Overall Performance</h4>
+                    <td>
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-light">
+                            <tr>
+                                <th>Buy Price</th>
+                                <th>Total Value</th>
+                                <th>Profit</th>
+                                <th>Current Value</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td th:text="${currentPositions.averageBuyPrice}"></td>
+                                <td th:text="${currentPositions.totalValue}"></td>
+                                <td th:text="${currentPositions.profitOrLoss}"></td>
+                                <td th:text="${currentPositions.currentValue}"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="container">
+                <tr>
+                    <h4 class="text-center text-primary">Positions</h4>
+                    <td class="panel">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-light">
+                            <tr>
+                                <th>Stock Name</th>
+                                <th>Symbol</th>
+                                <th>Buy Price</th>
+                                <th>Current Price</th>
+                                <th>Quantity</th>
+                                <th>Total Value</th>
+                                <th>Percent</th>
+                                <th>Profit</th>
+                            </tr>
+                            </thead>
+
+                            <tr th:each="position : ${currentPositionsList}">
+
+                                <td th:text="${position.stockName}">STOCK</td>
+                                <td>
+                                    <a href="https://api.robinhood.com/quotes/PSX/"
+                                       th:href="${position.instrument}"
+                                       th:text="${position.symbol}">XXX</a>
+                                </td>
+                                <td th:text="${position.averageBuyPrice}">0.0</td>
+                                <td th:text="${position.currentValue}">Blank</td>
+                                <td th:text="${position.quantity}">0</td>
+                                <td th:text="${position.totalValue}">0.0</td>
+                                <td th:text="${position.percent}">0.0</td>
+                                <td th:text="${position.profitOrLoss}">0.0</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
